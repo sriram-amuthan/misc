@@ -17,21 +17,11 @@ import sys
 def stockmax(prices):
     if not prices:
         return 0
-    maximas = []
-    n = len(prices)
-    for i in xrange(n-1, -1, -1):
-        if not maximas:
-            maximas.append(i)
-            continue
-        if prices[i] > prices[maximas[-1]]:
-            maximas.append(i)
+    current_max = prices[-1]
     profits = 0
-    prev_maxima = 0
-    while maximas:
-        maxima = maximas.pop()
-        for i in xrange(prev_maxima, maxima):
-            profits += (prices[maxima] - prices[i])
-        prev_maxima = maxima + 1
+    for price in prices[::-1]:
+        current_max = max(current_max, price)
+        profits += (current_max - price)
     return profits
 
 if __name__ == '__main__':
