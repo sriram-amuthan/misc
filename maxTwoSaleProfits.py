@@ -20,12 +20,9 @@ class Solution(object):
     
     def getLeftMaxSell(self, prices):
         n = len(prices)
-        if n < 2:
-            return 0
         localMax, localMin, maxProfit, profits = prices[0],prices[0],0,[0]*(n+1)
         for i in range(n+1):
             if i == n: #Handle the 
-                maxProfit = max(maxProfit, localMax - localMin)
                 profits[i] = maxProfit
                 break
             if prices[i] < localMin:
@@ -40,8 +37,6 @@ class Solution(object):
     
     def getRightMaxSell(self, prices):
         n = len(prices)
-        if n < 2:
-            return 0
         localMax, localMin, maxProfit, profits = prices[-1],prices[-1],0,[0]*(n+1)
         for i in range(n-1, -1, -1):
             if prices[i] > localMax:
